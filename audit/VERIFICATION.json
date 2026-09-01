@@ -1,0 +1,12 @@
+{
+  "version": "V9",
+  "cluster": "devnet",
+  "programId": "BaRfuBXneEAf6eFh3e7ECqNax8NyAmWHb3SkMWtSPUZw",
+  "releaseBinarySha256": "0d3de0d0e3a909a044a56a73c7ae9a74e574dfc8d0958583608b1c0eafe8bec0",
+  "onChainAllocationSha256": "8a4d59328db8661fc7cec03693cf38948f9fbbe0a5dae1dc60620efe994245b0",
+  "releaseBytes": 521304,
+  "onChainAllocationBytes": 642656,
+  "zeroPaddingBytes": 121352,
+  "exactReleasePrefixMatch": true,
+  "zeroPaddingOnly": true
+}

@@ -1,0 +1,1550 @@
+{
+  "address": "BaRfuBXneEAf6eFh3e7ECqNax8NyAmWHb3SkMWtSPUZw",
+  "metadata": {
+    "name": "nummus_vault",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Turnkey-controlled Solana SOL custody vault with constrained Orca Whirlpool liquidity"
+  },
+  "instructions": [
+    {
+      "name": "accept_authority",
+      "discriminator": [
+        107,
+        86,
+        198,
+        91,
+        33,
+        12,
+        107,
+        160
+      ],
+      "accounts": [
+        {
+          "name": "config",
+          "writable": true
+        },
+        {
+          "name": "new_authority",
+          "signer": true
+        }
+      ],
+      "args": [
+        {
+          "name": "role",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "close_position",
+      "discriminator": [
+        123,
+        134,
+        81,
+        0,
+        49,
+        68,
+        98,
+        98
+      ],
+      "accounts": [
+        {
+          "name": "config",
+          "writable": true
+        },
+        {
+          "name": "vault_sol",
+          "writable": true
+        },
+        {
+          "name": "vault_authority",
+          "signer": true
+        },
+        {
+          "name": "whirlpool_program"
+        },
+        {
+          "name": "position",
+          "writable": true
+        },
+        {
+          "name": "position_mint",
+          "writable": true
+        },
+        {
+          "name": "position_token_account",
+          "writable": true
+        },
+        {
+          "name": "token_program"
+        },
+        {
+          "name": "vault_token_account_a",
+          "writable": true
+        },
+        {
+          "name": "vault_token_account_b",
+          "writable": true
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "collect_fees",
+      "discriminator": [
+        164,
+        152,
+        207,
+        99,
+        30,
+        186,
+        19,
+        182
+      ],
+      "accounts": [
+        {
+          "name": "config"
+        },
+        {
+          "name": "vault_sol"
+        },
+        {
+          "name": "vault_authority",
+          "signer": true
+        },
+        {
+          "name": "whirlpool_program"
+        },
+        {
+          "name": "whirlpool"
+        },
+        {
+          "name": "position",
+          "writable": true
+        },
+        {
+          "name": "position_token_account"
+        },
+        {
+          "name": "vault_token_account_a",
+          "writable": true
+        },
+        {
+          "name": "vault_token_account_b",
+          "writable": true
+        },
+        {
+          "name": "token_vault_a",
+          "writable": true
+        },
+        {
+          "name": "token_vault_b",
+          "writable": true
+        },
+        {
+          "name": "token_program"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "decrease_liquidity",
+      "discriminator": [
+        160,
+        38,
+        208,
+        111,
+        104,
+        91,
+        44,
+        1
+      ],
+      "accounts": [
+        {
+          "name": "config"
+        },
+        {
+          "name": "vault_sol",
+          "writable": true
+        },
+        {
+          "name": "vault_authority",
+          "signer": true
+        },
+        {
+          "name": "whirlpool_program"
+        },
+        {
+          "name": "whirlpool",
+          "writable": true
+        },
+        {
+          "name": "position",
+          "writable": true
+        },
+        {
+          "name": "position_token_account"
+        },
+        {
+          "name": "vault_token_account_a",
+          "writable": true
+        },
+        {
+          "name": "vault_token_account_b",
+          "writable": true
+        },
+        {
+          "name": "token_vault_a",
+          "writable": true
+        },
+        {
+          "name": "token_vault_b",
+          "writable": true
+        },
+        {
+          "name": "tick_array_lower",
+          "writable": true
+        },
+        {
+          "name": "tick_array_upper",
+          "writable": true
+        },
+        {
+          "name": "token_program"
+        },
+        {
+          "name": "token_mint_a"
+        },
+        {
+          "name": "token_mint_b"
+        },
+        {
+          "name": "system_program"
+        },
+        {
+          "name": "associated_token_program"
+        }
+      ],
+      "args": [
+        {
+          "name": "args",
+          "type": {
+            "defined": {
+              "name": "DecreaseLiquidityArgs"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "deposit",
+      "discriminator": [
+        242,
+        35,
+        198,
+        137,
+        82,
+        225,
+        242,
+        182
+      ],
+      "accounts": [
+        {
+          "name": "config"
+        },
+        {
+          "name": "vault_sol",
+          "writable": true
+        },
+        {
+          "name": "position",
+          "writable": true
+        },
+        {
+          "name": "deposit_receipt",
+          "writable": true
+        },
+        {
+          "name": "depositor",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program"
+        }
+      ],
+      "args": [
+        {
+          "name": "deposit_id",
+          "type": "u64"
+        },
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "increase_liquidity",
+      "discriminator": [
+        46,
+        156,
+        243,
+        118,
+        13,
+        205,
+        251,
+        178
+      ],
+      "accounts": [
+        {
+          "name": "config"
+        },
+        {
+          "name": "vault_sol",
+          "writable": true
+        },
+        {
+          "name": "vault_authority",
+          "signer": true
+        },
+        {
+          "name": "whirlpool_program"
+        },
+        {
+          "name": "whirlpool",
+          "writable": true
+        },
+        {
+          "name": "position",
+          "writable": true
+        },
+        {
+          "name": "position_token_account"
+        },
+        {
+          "name": "vault_token_account_a",
+          "writable": true
+        },
+        {
+          "name": "vault_token_account_b",
+          "writable": true
+        },
+        {
+          "name": "token_vault_a",
+          "writable": true
+        },
+        {
+          "name": "token_vault_b",
+          "writable": true
+        },
+        {
+          "name": "tick_array_lower",
+          "writable": true
+        },
+        {
+          "name": "tick_array_upper",
+          "writable": true
+        },
+        {
+          "name": "token_program"
+        },
+        {
+          "name": "token_mint_a"
+        },
+        {
+          "name": "token_mint_b"
+        },
+        {
+          "name": "system_program"
+        },
+        {
+          "name": "associated_token_program"
+        }
+      ],
+      "args": [
+        {
+          "name": "args",
+          "type": {
+            "defined": {
+              "name": "IncreaseLiquidityArgs"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "initialize",
+      "discriminator": [
+        175,
+        175,
+        109,
+        31,
+        13,
+        152,
+        155,
+        237
+      ],
+      "accounts": [
+        {
+          "name": "config",
+          "writable": true
+        },
+        {
+          "name": "vault_sol",
+          "writable": true
+        },
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program"
+        }
+      ],
+      "args": [
+        {
+          "name": "args",
+          "type": {
+            "defined": {
+              "name": "InitializeArgs"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "open_position",
+      "discriminator": [
+        135,
+        128,
+        47,
+        77,
+        15,
+        152,
+        240,
+        49
+      ],
+      "accounts": [
+        {
+          "name": "config",
+          "writable": true
+        },
+        {
+          "name": "vault_sol",
+          "writable": true
+        },
+        {
+          "name": "vault_authority",
+          "signer": true
+        },
+        {
+          "name": "whirlpool_program"
+        },
+        {
+          "name": "whirlpool",
+          "writable": true
+        },
+        {
+          "name": "position",
+          "writable": true
+        },
+        {
+          "name": "position_mint",
+          "writable": true
+        },
+        {
+          "name": "position_token_account",
+          "writable": true
+        },
+        {
+          "name": "token_program"
+        },
+        {
+          "name": "system_program"
+        },
+        {
+          "name": "rent"
+        },
+        {
+          "name": "associated_token_program"
+        }
+      ],
+      "args": [
+        {
+          "name": "args",
+          "type": {
+            "defined": {
+              "name": "OpenPositionArgs"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "propose_authority",
+      "discriminator": [
+        20,
+        148,
+        236,
+        198,
+        76,
+        119,
+        99,
+        142
+      ],
+      "accounts": [
+        {
+          "name": "config",
+          "writable": true
+        },
+        {
+          "name": "admin",
+          "signer": true
+        }
+      ],
+      "args": [
+        {
+          "name": "role",
+          "type": "u8"
+        },
+        {
+          "name": "new_authority",
+          "type": "pubkey"
+        }
+      ]
+    },
+    {
+      "name": "set_pause_flags",
+      "discriminator": [
+        205,
+        167,
+        85,
+        237,
+        144,
+        202,
+        248,
+        175
+      ],
+      "accounts": [
+        {
+          "name": "config",
+          "writable": true
+        },
+        {
+          "name": "admin",
+          "signer": true
+        }
+      ],
+      "args": [
+        {
+          "name": "deposits_paused",
+          "type": "bool"
+        },
+        {
+          "name": "liquidity_paused",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "update_config",
+      "discriminator": [
+        29,
+        158,
+        252,
+        191,
+        10,
+        83,
+        219,
+        99
+      ],
+      "accounts": [
+        {
+          "name": "config",
+          "writable": true
+        },
+        {
+          "name": "admin",
+          "signer": true
+        }
+      ],
+      "args": [
+        {
+          "name": "min_tick",
+          "type": "i32"
+        },
+        {
+          "name": "max_tick",
+          "type": "i32"
+        },
+        {
+          "name": "max_slippage_bps",
+          "type": "u16"
+        },
+        {
+          "name": "vault_token_account_a",
+          "type": "pubkey"
+        },
+        {
+          "name": "vault_token_account_b",
+          "type": "pubkey"
+        }
+      ]
+    },
+    {
+      "name": "update_fees_and_rewards",
+      "discriminator": [
+        154,
+        230,
+        250,
+        13,
+        236,
+        209,
+        75,
+        223
+      ],
+      "accounts": [
+        {
+          "name": "config"
+        },
+        {
+          "name": "vault_sol"
+        },
+        {
+          "name": "vault_authority",
+          "signer": true
+        },
+        {
+          "name": "whirlpool_program"
+        },
+        {
+          "name": "whirlpool",
+          "writable": true
+        },
+        {
+          "name": "position",
+          "writable": true
+        },
+        {
+          "name": "tick_array_lower"
+        },
+        {
+          "name": "tick_array_upper"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "withdraw",
+      "discriminator": [
+        183,
+        18,
+        70,
+        156,
+        148,
+        109,
+        161,
+        34
+      ],
+      "accounts": [
+        {
+          "name": "config",
+          "writable": true
+        },
+        {
+          "name": "vault_sol",
+          "writable": true
+        },
+        {
+          "name": "position",
+          "writable": true
+        },
+        {
+          "name": "withdrawal_receipt",
+          "writable": true
+        },
+        {
+          "name": "destination",
+          "writable": true
+        },
+        {
+          "name": "vault_authority",
+          "signer": true
+        },
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program"
+        }
+      ],
+      "args": [
+        {
+          "name": "request_id",
+          "type": "u64"
+        },
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Config",
+      "discriminator": [
+        155,
+        12,
+        170,
+        224,
+        30,
+        250,
+        204,
+        130
+      ]
+    },
+    {
+      "name": "DepositReceipt",
+      "discriminator": [
+        64,
+        175,
+        24,
+        183,
+        138,
+        109,
+        70,
+        78
+      ]
+    },
+    {
+      "name": "UserPosition",
+      "discriminator": [
+        251,
+        248,
+        209,
+        245,
+        83,
+        234,
+        17,
+        27
+      ]
+    },
+    {
+      "name": "WithdrawalReceipt",
+      "discriminator": [
+        167,
+        235,
+        84,
+        7,
+        210,
+        55,
+        67,
+        114
+      ]
+    }
+  ],
+  "types": [
+    {
+      "name": "AuthorityRotationAccepted",
+      "type": {
+        "fields": [
+          {
+            "name": "role",
+            "type": "u8"
+          },
+          {
+            "name": "new_authority",
+            "type": "pubkey"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "AuthorityRotationProposed",
+      "type": {
+        "fields": [
+          {
+            "name": "role",
+            "type": "u8"
+          },
+          {
+            "name": "current",
+            "type": "pubkey"
+          },
+          {
+            "name": "pending",
+            "type": "pubkey"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "Config",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "version",
+            "type": "u8"
+          },
+          {
+            "name": "config_bump",
+            "type": "u8"
+          },
+          {
+            "name": "vault_sol_bump",
+            "type": "u8"
+          },
+          {
+            "name": "admin",
+            "type": "pubkey"
+          },
+          {
+            "name": "vault_authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "pending_admin",
+            "type": "pubkey"
+          },
+          {
+            "name": "pending_vault_authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "deposits_paused",
+            "type": "bool"
+          },
+          {
+            "name": "legacy_reserved_byte",
+            "type": "u8"
+          },
+          {
+            "name": "liquidity_paused",
+            "type": "bool"
+          },
+          {
+            "name": "whirlpool",
+            "type": "pubkey"
+          },
+          {
+            "name": "token_mint_a",
+            "type": "pubkey"
+          },
+          {
+            "name": "token_mint_b",
+            "type": "pubkey"
+          },
+          {
+            "name": "vault_token_account_a",
+            "type": "pubkey"
+          },
+          {
+            "name": "vault_token_account_b",
+            "type": "pubkey"
+          },
+          {
+            "name": "position",
+            "type": "pubkey"
+          },
+          {
+            "name": "position_mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "position_token_account",
+            "type": "pubkey"
+          },
+          {
+            "name": "position_sequence",
+            "type": "u64"
+          },
+          {
+            "name": "min_tick",
+            "type": "i32"
+          },
+          {
+            "name": "max_tick",
+            "type": "i32"
+          },
+          {
+            "name": "max_slippage_bps",
+            "type": "u16"
+          },
+          {
+            "name": "total_deposits",
+            "type": "u64"
+          },
+          {
+            "name": "total_withdrawals",
+            "type": "u64"
+          },
+          {
+            "name": "reserved",
+            "type": {
+              "array": [
+                "u8",
+                56
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "DecreaseLiquidityArgs",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "liquidity_amount",
+            "type": "u128"
+          },
+          {
+            "name": "token_min_a",
+            "type": "u64"
+          },
+          {
+            "name": "token_min_b",
+            "type": "u64"
+          },
+          {
+            "name": "slippage_bps",
+            "type": "u16"
+          }
+        ]
+      }
+    },
+    {
+      "name": "DepositCommitted",
+      "type": {
+        "fields": [
+          {
+            "name": "owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "deposit_id",
+            "type": "u64"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "position_balance_after",
+            "type": "u64"
+          },
+          {
+            "name": "receipt",
+            "type": "pubkey"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "DepositReceipt",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "version",
+            "type": "u8"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "deposit_id",
+            "type": "u64"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "IncreaseLiquidityArgs",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "liquidity_amount",
+            "type": "u128"
+          },
+          {
+            "name": "token_max_a",
+            "type": "u64"
+          },
+          {
+            "name": "token_max_b",
+            "type": "u64"
+          },
+          {
+            "name": "slippage_bps",
+            "type": "u16"
+          }
+        ]
+      }
+    },
+    {
+      "name": "InitializeArgs",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "whirlpool",
+            "type": "pubkey"
+          },
+          {
+            "name": "token_mint_a",
+            "type": "pubkey"
+          },
+          {
+            "name": "token_mint_b",
+            "type": "pubkey"
+          },
+          {
+            "name": "vault_token_account_a",
+            "type": "pubkey"
+          },
+          {
+            "name": "vault_token_account_b",
+            "type": "pubkey"
+          },
+          {
+            "name": "min_tick",
+            "type": "i32"
+          },
+          {
+            "name": "max_tick",
+            "type": "i32"
+          },
+          {
+            "name": "max_slippage_bps",
+            "type": "u16"
+          },
+          {
+            "name": "vault_authority",
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "LiquidityOperation",
+      "type": {
+        "fields": [
+          {
+            "name": "kind",
+            "type": "u8"
+          },
+          {
+            "name": "whirlpool",
+            "type": "pubkey"
+          },
+          {
+            "name": "tick_lower",
+            "type": "i32"
+          },
+          {
+            "name": "tick_upper",
+            "type": "i32"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "OpenPositionArgs",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "tick_lower",
+            "type": "i32"
+          },
+          {
+            "name": "tick_upper",
+            "type": "i32"
+          },
+          {
+            "name": "position_bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PauseFlagsUpdated",
+      "type": {
+        "fields": [
+          {
+            "name": "deposits_paused",
+            "type": "bool"
+          },
+          {
+            "name": "liquidity_paused",
+            "type": "bool"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "UserPosition",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "version",
+            "type": "u8"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "balance_lamports",
+            "type": "u64"
+          },
+          {
+            "name": "deposit_count",
+            "type": "u64"
+          },
+          {
+            "name": "withdrawal_count",
+            "type": "u64"
+          },
+          {
+            "name": "created_at",
+            "type": "i64"
+          },
+          {
+            "name": "total_withdrawn_lamports",
+            "type": "u64"
+          },
+          {
+            "name": "reserved",
+            "type": {
+              "array": [
+                "u8",
+                24
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "VaultInitialized",
+      "type": {
+        "fields": [
+          {
+            "name": "config",
+            "type": "pubkey"
+          },
+          {
+            "name": "vault_sol",
+            "type": "pubkey"
+          },
+          {
+            "name": "admin",
+            "type": "pubkey"
+          },
+          {
+            "name": "vault_authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "whirlpool",
+            "type": "pubkey"
+          },
+          {
+            "name": "token_mint_a",
+            "type": "pubkey"
+          },
+          {
+            "name": "token_mint_b",
+            "type": "pubkey"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "WithdrawalReceipt",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "version",
+            "type": "u8"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "request_id",
+            "type": "u64"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "destination",
+            "type": "pubkey"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "WithdrawalSettled",
+      "type": {
+        "fields": [
+          {
+            "name": "owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "request_id",
+            "type": "u64"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "destination",
+            "type": "pubkey"
+          },
+          {
+            "name": "position_balance_after",
+            "type": "u64"
+          },
+          {
+            "name": "receipt",
+            "type": "pubkey"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ],
+        "kind": "struct"
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "ConfigVersionMismatch",
+      "msg": "Config account version does not match the program's expected version"
+    },
+    {
+      "code": 6001,
+      "name": "AccountVersionMismatch",
+      "msg": "Account version does not match the program's expected version"
+    },
+    {
+      "code": 6002,
+      "name": "UnauthorizedVaultAuthority",
+      "msg": "Signer is not the configured vault authority"
+    },
+    {
+      "code": 6003,
+      "name": "UnauthorizedAdmin",
+      "msg": "Signer is not the configured admin authority"
+    },
+    {
+      "code": 6004,
+      "name": "UnauthorizedPendingAuthority",
+      "msg": "Signer is not the pending authority for this rotation"
+    },
+    {
+      "code": 6005,
+      "name": "NoPendingAuthority",
+      "msg": "No pending authority rotation is in progress"
+    },
+    {
+      "code": 6006,
+      "name": "DepositsPaused",
+      "msg": "Deposits are currently paused"
+    },
+    {
+      "code": 6007,
+      "name": "ReservedLegacyError6007",
+      "msg": "Reserved legacy error code"
+    },
+    {
+      "code": 6008,
+      "name": "LiquidityPaused",
+      "msg": "Liquidity operations are currently paused"
+    },
+    {
+      "code": 6009,
+      "name": "ZeroAmount",
+      "msg": "Deposit amount must be greater than zero"
+    },
+    {
+      "code": 6010,
+      "name": "DepositReplay",
+      "msg": "Deposit id has already been used for this owner (replay)"
+    },
+    {
+      "code": 6011,
+      "name": "InvalidVaultDestination",
+      "msg": "Destination vault account does not match the canonical SOL vault PDA"
+    },
+    {
+      "code": 6012,
+      "name": "PositionOwnerMismatch",
+      "msg": "Position owner does not match the provided wallet"
+    },
+    {
+      "code": 6013,
+      "name": "WithdrawalDestinationMismatch",
+      "msg": "Withdrawal destination is not the wallet bound to this position"
+    },
+    {
+      "code": 6014,
+      "name": "InsufficientPositionBalance",
+      "msg": "Position does not have enough recorded balance for this withdrawal"
+    },
+    {
+      "code": 6015,
+      "name": "WithdrawalReplay",
+      "msg": "Withdrawal request id has already been settled (replay)"
+    },
+    {
+      "code": 6016,
+      "name": "RentReserveBreach",
+      "msg": "Withdrawing this amount would breach the vault rent reserve"
+    },
+    {
+      "code": 6017,
+      "name": "MathOverflow",
+      "msg": "Checked arithmetic overflow"
+    },
+    {
+      "code": 6018,
+      "name": "InvalidWhirlpoolProgram",
+      "msg": "Provided Orca Whirlpool program does not match the pinned program id"
+    },
+    {
+      "code": 6019,
+      "name": "InvalidWhirlpool",
+      "msg": "Provided Whirlpool does not match the configured pool"
+    },
+    {
+      "code": 6020,
+      "name": "InvalidMint",
+      "msg": "Provided token mint does not match the configured mint"
+    },
+    {
+      "code": 6021,
+      "name": "InvalidVaultTokenAccount",
+      "msg": "Provided vault token account is not owned/authorized by the vault PDA"
+    },
+    {
+      "code": 6022,
+      "name": "TickRangeOutOfBounds",
+      "msg": "Requested tick range is outside the configured/allowed bounds"
+    },
+    {
+      "code": 6023,
+      "name": "SlippageTooHigh",
+      "msg": "Requested slippage exceeds the configured maximum"
+    },
+    {
+      "code": 6024,
+      "name": "DisallowedOrcaInstruction",
+      "msg": "Orca CPI instruction discriminator is not on the allowlist"
+    },
+    {
+      "code": 6025,
+      "name": "OrcaAccountConstraintViolation",
+      "msg": "Orca CPI account set does not match the required, constrained layout"
+    },
+    {
+      "code": 6026,
+      "name": "NonVaultProceedsDestination",
+      "msg": "Liquidity proceeds must return to a vault-controlled account"
+    },
+    {
+      "code": 6027,
+      "name": "InvalidPosition",
+      "msg": "Provided Orca position does not belong to the configured pool/mint"
+    },
+    {
+      "code": 6028,
+      "name": "InvalidTickArray",
+      "msg": "Provided tick array does not belong to the pool or configured ticks"
+    },
+    {
+      "code": 6029,
+      "name": "PositionAlreadyOpen",
+      "msg": "A position is already open; close it before opening another"
+    },
+    {
+      "code": 6030,
+      "name": "NoOpenPosition",
+      "msg": "No position is open for this operation"
+    },
+    {
+      "code": 6031,
+      "name": "InvalidPositionTokenAccount",
+      "msg": "Provided position token account is not the pinned vault-owned NFT account"
+    },
+    {
+      "code": 6032,
+      "name": "UnsupportedOrcaOperation",
+      "msg": "Requested Orca operation kind is not supported"
+    },
+    {
+      "code": 6033,
+      "name": "InvalidNativeSolMint",
+      "msg": "Configured SOL/USDC pool must contain wrapped SOL as exactly one mint"
+    },
+    {
+      "code": 6034,
+      "name": "InvalidAssociatedTokenAccount",
+      "msg": "Configured vault token account must be the canonical ATA for the vault PDA and mint"
+    }
+  ],
+  "events": [
+    {
+      "discriminator": [
+        209,
+        128,
+        29,
+        149,
+        35,
+        147,
+        2,
+        64
+      ],
+      "name": "AuthorityRotationAccepted"
+    },
+    {
+      "discriminator": [
+        76,
+        59,
+        57,
+        23,
+        22,
+        166,
+        253,
+        33
+      ],
+      "name": "AuthorityRotationProposed"
+    },
+    {
+      "discriminator": [
+        10,
+        239,
+        62,
+        40,
+        90,
+        44,
+        14,
+        16
+      ],
+      "name": "DepositCommitted"
+    },
+    {
+      "discriminator": [
+        12,
+        147,
+        19,
+        218,
+        175,
+        163,
+        125,
+        165
+      ],
+      "name": "LiquidityOperation"
+    },
+    {
+      "discriminator": [
+        27,
+        241,
+        6,
+        218,
+        123,
+        5,
+        234,
+        94
+      ],
+      "name": "PauseFlagsUpdated"
+    },
+    {
+      "discriminator": [
+        180,
+        43,
+        207,
+        2,
+        18,
+        71,
+        3,
+        75
+      ],
+      "name": "VaultInitialized"
+    },
+    {
+      "discriminator": [
+        7,
+        150,
+        114,
+        152,
+        192,
+        118,
+        224,
+        19
+      ],
+      "name": "WithdrawalSettled"
+    }
+  ]
+}

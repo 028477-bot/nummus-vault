@@ -1,0 +1,29 @@
+{
+  "policyName": "nummus-vault-10-auto-liquidity",
+  "effect": "EFFECT_ALLOW",
+  "notes": "Automatic LP. Allows the automation identity to sign exactly one top-level instruction whose program is the canonical vault and whose first eight data bytes are one of the six LP discriminators. Direct SOL/SPL transfers and extra instructions are forbidden. Higher-level flows remain receipt-gated.",
+  "consensus": "approvers.any(user, user.tags.contains('automation'))",
+  "condition": "solana.tx.instructions.count() == 1 && solana.tx.program_keys.all(p, p == 'BaRfuBXneEAf6eFh3e7ECqNax8NyAmWHb3SkMWtSPUZw') && (solana.tx.instructions[0].instruction_data_hex[0..16] == '87802f4d0f98f031' || solana.tx.instructions[0].instruction_data_hex[0..16] == '2e9cf3760dcdfbb2' || solana.tx.instructions[0].instruction_data_hex[0..16] == 'a026d06f685b2c01' || solana.tx.instructions[0].instruction_data_hex[0..16] == '9ae6fa0decd14bdf' || solana.tx.instructions[0].instruction_data_hex[0..16] == 'a498cf631eba13b6' || solana.tx.instructions[0].instruction_data_hex[0..16] == '7b86510031446262') && solana.tx.transfers.count() == 0 && solana.tx.spl_transfers.count() == 0",
+  "constraints": {
+    "programId": "BaRfuBXneEAf6eFh3e7ECqNax8NyAmWHb3SkMWtSPUZw",
+    "allowedInstructions": [
+      "open_position",
+      "increase_liquidity",
+      "decrease_liquidity",
+      "update_fees_and_rewards",
+      "collect_fees",
+      "close_position"
+    ],
+    "allowedInstructionDiscriminators": {
+      "open_position": [135, 128, 47, 77, 15, 152, 240, 49],
+      "increase_liquidity": [46, 156, 243, 118, 13, 205, 251, 178],
+      "decrease_liquidity": [160, 38, 208, 111, 104, 91, 44, 1],
+      "update_fees_and_rewards": [154, 230, 250, 13, 236, 209, 75, 223],
+      "collect_fees": [164, 152, 207, 99, 30, 186, 19, 182],
+      "close_position": [123, 134, 81, 0, 49, 68, 98, 98]
+    },
+    "forbidExtraInstructions": true,
+    "forbidSystemTransfers": true,
+    "notAtomicWarning": "deploy/close/rerange are NON-ATOMIC persisted sequences. Exactly one primitive is approved per transaction and each next step waits for exact event reconciliation."
+  }
+}

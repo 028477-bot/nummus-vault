@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Companion to the cargo dispatcher: SBF Cargo spawns `rustc` by name. Route it
+# through the Solana-linked rustup toolchain instead of Nix's host rustc.
+set -euo pipefail
+
+if [[ -n "${RUSTUP_TOOLCHAIN:-}" ]]; then
+  exec rustup run "$RUSTUP_TOOLCHAIN" rustc "$@"
+fi
+: "${HOST_RUSTC_BIN:?HOST_RUSTC_BIN must point to the host rustc binary}"
+exec "$HOST_RUSTC_BIN" "$@"

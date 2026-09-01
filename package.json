@@ -1,0 +1,25 @@
+{
+  "name": "nummus-vault-anchor",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Anchor workspace and localnet/devnet integration tests for the Nummus Vault program. Isolated from the application's root package.json.",
+  "scripts": {
+    "build": "bash scripts/build.sh",
+    "test:unit": "cargo test --locked && node --test tests/turnkey-policies.test.mjs",
+    "test:localnet": "bash scripts/localnet.sh",
+    "deploy:devnet": "bash scripts/deploy-devnet.sh",
+    "verify": "bash scripts/verify.sh",
+    "test": "ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"
+  },
+  "devDependencies": {
+    "@coral-xyz/anchor": "^0.30.0",
+    "@solana/web3.js": "^1.90.0",
+    "@types/chai": "^4.3.0",
+    "@types/mocha": "^10.0.0",
+    "@types/node": "^20.0.0",
+    "chai": "^4.3.0",
+    "mocha": "^10.0.0",
+    "ts-mocha": "^10.0.0",
+    "typescript": "^5.0.0"
+  }
+}

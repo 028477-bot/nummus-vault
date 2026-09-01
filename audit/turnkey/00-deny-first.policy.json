@@ -1,0 +1,7 @@
+{
+  "policyName": "nummus-vault-00-deny-first",
+  "effect": "EFFECT_DENY",
+  "notes": "Deny-first baseline. Denies ALL Solana signing for the vault unless an explicit, higher-priority allow policy matches the COMPLETE transaction. Must be applied before any allow rule.",
+  "consensus": "true",
+  "condition": "true"
+}

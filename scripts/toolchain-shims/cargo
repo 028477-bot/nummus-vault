@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Solana 1.18's cargo-build-sbf needs two Cargo toolchains in one invocation:
+# the host Cargo for metadata, and `cargo +solana` for SBF compilation. NixOS
+# exposes host Cargo as a real binary rather than a rustup shim, so dispatch the
+# explicit +solana form through rustup without replacing host metadata Cargo.
+set -euo pipefail
+
+: "${HOST_CARGO_BIN:?HOST_CARGO_BIN must point to the host cargo binary}"
+if [[ "${1:-}" == +* ]]; then
+  toolchain="${1#+}"
+  shift
+  exec rustup run "$toolchain" cargo "$@"
+fi
+exec "$HOST_CARGO_BIN" "$@"

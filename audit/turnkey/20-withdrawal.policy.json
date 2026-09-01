@@ -1,0 +1,15 @@
+{
+  "policyName": "nummus-vault-20-withdrawal",
+  "effect": "EFFECT_ALLOW",
+  "notes": "User withdrawals. Requires BOTH the automation identity AND Priit's manual approval. Allows exactly two top-level instructions: System Program AdvanceNonceAccount followed by the canonical vault withdraw discriminator. No direct SOL/SPL transfer or third instruction is allowed. The on-chain program independently binds destination, rejects request replay, and cannot be paused by an administrator.",
+  "consensus": "approvers.contains(user, user.tags.contains('automation')) && approvers.contains(user, user.id == 'PRIIT_USER_ID')",
+  "condition": "solana.tx.instructions.count() == 2 && solana.tx.program_keys.all(p, p == '11111111111111111111111111111111' || p == 'BaRfuBXneEAf6eFh3e7ECqNax8NyAmWHb3SkMWtSPUZw') && solana.tx.instructions[0].instruction_data_hex == '04000000' && solana.tx.instructions[1].instruction_data_hex[0..16] == 'b712469c946da122' && solana.tx.transfers.count() == 0 && solana.tx.spl_transfers.count() == 0",
+  "constraints": {
+    "programId": "BaRfuBXneEAf6eFh3e7ECqNax8NyAmWHb3SkMWtSPUZw",
+    "allowedInstruction": "withdraw",
+    "requiredApprovers": ["automation", "priit"],
+    "requiredInstructionOrder": ["system.advance_nonce_account", "nummus_vault.withdraw"],
+    "forbidExtraInstructions": true,
+    "forbidSystemTransfers": true
+  }
+}

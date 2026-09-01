@@ -1,0 +1,8 @@
+{
+  "version": "V9",
+  "cluster": "devnet",
+  "programId": "BaRfuBXneEAf6eFh3e7ECqNax8NyAmWHb3SkMWtSPUZw",
+  "binarySha256": "0d3de0d0e3a909a044a56a73c7ae9a74e574dfc8d0958583608b1c0eafe8bec0",
+  "binaryBytes": 521304,
+  "auditStatus": "unaudited"
+}
