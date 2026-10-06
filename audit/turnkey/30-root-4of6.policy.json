@@ -1,0 +1,24 @@
+{
+  "policyName": "nummus-vault-30-root-4of6",
+  "effect": "EFFECT_ALLOW",
+  "notes": "4-of-6 root policy for one privileged instruction per transaction: initialize/configuration/authority administration on the canonical vault, or one BPF Upgradeable Loader Upgrade/ExtendProgram instruction. Withdraw and every LP discriminator are deliberately absent. The upgrade authority MUST be this Turnkey root before funds enter.",
+  "consensus": "approvers.filter(user, user.tags.contains('root')).count() >= 4",
+  "condition": "solana.tx.instructions.count() == 1 && (((solana.tx.program_keys.all(p, p == 'BaRfuBXneEAf6eFh3e7ECqNax8NyAmWHb3SkMWtSPUZw')) && (solana.tx.instructions[0].instruction_data_hex[0..16] == 'afaf6d1f0d989bed' || solana.tx.instructions[0].instruction_data_hex[0..16] == 'cda755ed90caf8af' || solana.tx.instructions[0].instruction_data_hex[0..16] == '1d9efcbf0a53db63' || solana.tx.instructions[0].instruction_data_hex[0..16] == '1494ecc64c77638e' || solana.tx.instructions[0].instruction_data_hex[0..16] == '6b56c65b210c6ba0')) || ((solana.tx.program_keys.all(p, p == 'BPFLoaderUpgradeab1e11111111111111111111111')) && (solana.tx.instructions[0].instruction_data_hex[0..8] == '03000000' || solana.tx.instructions[0].instruction_data_hex[0..8] == '06000000'))) && solana.tx.transfers.count() == 0 && solana.tx.spl_transfers.count() == 0",
+  "constraints": {
+    "quorum": { "threshold": 4, "of": 6 },
+    "allowedInstructions": [
+      "initialize",
+      "set_pause_flags",
+      "update_config",
+      "propose_authority",
+      "accept_authority",
+      "bpf_upgradeable_loader.upgrade",
+      "bpf_upgradeable_loader.extend_program"
+    ],
+    "allowedPrograms": [
+      "BaRfuBXneEAf6eFh3e7ECqNax8NyAmWHb3SkMWtSPUZw",
+      "BPFLoaderUpgradeab1e11111111111111111111111"
+    ],
+    "forbidExtraInstructions": true
+  }
+}

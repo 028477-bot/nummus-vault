@@ -1,0 +1,15 @@
+{
+  "policyName": "nummus-vault-31-reward-release-candidate",
+  "effect": "EFFECT_ALLOW",
+  "notes": "Draft only. One root-authorized release_reward instruction, never LP automation. The on-chain instruction restricts the mint to a configured third-token reward and the destination to the current admin's canonical ATA. Admin signing identity and upgrade authority must be root-controlled before use. Validate the entire transaction and provider policy syntax before activation.",
+  "consensus": "approvers.filter(user, user.tags.contains('root')).count() >= 4",
+  "condition": "solana.tx.instructions.count() == 1 && solana.tx.program_keys.all(p, p == 'BaRfuBXneEAf6eFh3e7ECqNax8NyAmWHb3SkMWtSPUZw') && solana.tx.instructions[0].instruction_data_hex[0..16] == '6da8d922e515564d' && solana.tx.transfers.count() == 0 && solana.tx.spl_transfers.count() == 0",
+  "constraints": {
+    "deploymentStatus": "draft-not-activated",
+    "quorum": { "threshold": 4, "of": 6 },
+    "allowedInstructions": ["release_reward"],
+    "forbidExtraInstructions": true,
+    "destination": "current config.admin canonical ATA for the configured third-token reward mint",
+    "forbiddenMints": ["native SOL", "configured token_mint_a", "configured token_mint_b"]
+  }
+}

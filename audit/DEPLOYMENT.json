@@ -1,0 +1,10 @@
+{
+  "status": "local-audit-candidate",
+  "programId": "BaRfuBXneEAf6eFh3e7ECqNax8NyAmWHb3SkMWtSPUZw",
+  "binarySha256": "7c618f8331706944088da6a0d8a86861fd5c8b507ac43c4245f78c7d9281d65b",
+  "idlSha256": "44a0b1a81b66afa2998543d45cb093264cf36069bc2726059885d2850f4b4a37",
+  "deployed": false,
+  "auditClearance": false,
+  "liveVerification": false,
+  "version": "V10.4"
+}

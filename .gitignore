@@ -1,0 +1,12 @@
+# Never commit private keys or build artifacts.
+# The canonical IDL/types live in anchor/idl and anchor/types (committed).
+# Everything under target/ (including anchor-generated copies) stays ignored.
+target/
+# Program deploy keypair is a PRIVATE KEY — never commit it.
+**/*-keypair.json
+keys/
+.anchor/
+node_modules/
+test-ledger/
+*.so
+migration/

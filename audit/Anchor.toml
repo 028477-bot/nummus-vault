@@ -1,0 +1,14 @@
+[toolchain]
+anchor_version = "0.30.0"
+solana_version = "1.18.26"
+
+[features]
+resolution = true
+skip-lint = false
+
+[programs.localnet]
+nummus_vault = "BaRfuBXneEAf6eFh3e7ECqNax8NyAmWHb3SkMWtSPUZw"
+
+[provider]
+cluster = "localnet"
+wallet = "~/.config/solana/id.json"
